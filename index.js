@@ -16,7 +16,7 @@ let perSec = 200;
 const execCommand = {
     input: function (client, target, command, args) {
         if (args.length === 0) {
-            client.sendMessage(red + "Usage: /exec <command|--stop|--set-rate <burst> <per-sec>>", target.chan);
+            client.sendMessage("Usage: /exec <command|--stop|--set-rate <burst> <per-sec>>", target.chan);
             return;
         }
 
@@ -32,11 +32,11 @@ const execCommand = {
             default:
                 exec(args.join(' '), (error, stdout, stderr) => {
                     if(error) {
-                        sendErrorMessage(`error: ${error.message}`, target.chan, client);
+                        client.sendMessage(`error: ${error.message}`, target.chan);
                         return
                     }
                     if(stderr) {
-                        sendErrorMessage(`stderr: ${stderr}`, target.chan, client);
+                        client.sendMessage(`stderr: ${stderr}`, target.chan);
                         return;
                     }
 
