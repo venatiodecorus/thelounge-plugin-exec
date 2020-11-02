@@ -1,11 +1,11 @@
 "use strict";
 
-const Msg = require("thelounge/src/models/msg");
-const log = require("thelounge/src/log");
-const Helper = require("thelounge/src/helper");
-const Utils = require("thelounge/src/command-line/utils");
-const fs = require("fs");
-const path = require('path');
+//const Msg = require("thelounge/src/models/msg");
+//const log = require("thelounge/src/log");
+//const Helper = require("thelounge/src/helper");
+//const Utils = require("thelounge/src/command-line/utils");
+//const fs = require("fs");
+//const path = require('path');
 const { exec } = require("child_process");
 
 let thelounge = null;
@@ -42,12 +42,16 @@ const execCommand = {
 
                     // Get first burst amount of lines
                     let burstText = stdout.trim().split(/[\r?\n]+/, burst);
-                    for(var i = 0; i < burst; i++) {
+                    for(var i = 0; i < burst && i < burstText.length; i++) {
                         client.runAsUser(burstText[i], target.chan.id);
                     }
         
                     let restText = stdout.trim().split(/[\r?\n]+/);
                     restText = restText.splice(burst, restText.length-1);
+                    
+                    if(restText.length == 0)
+                        return;
+
                     var it = 0;
                     var intObj = setInterval(() => {
                         client.runAsUser(restText[it++], target.chan.id);
@@ -68,10 +72,5 @@ module.exports = {
     onServerStart: api => {
         thelounge = api;
         thelounge.Commands.add("exec", execCommand);
-        // if (!fs.existsSync(shortcutsFile)) {
-        //     log.warn("Shortcut file " + shortcutsFile + " doesn't exist. Creating...")
-        //     saveShortcuts();
-        // }
-        // loadShortcuts();
     },
 };
