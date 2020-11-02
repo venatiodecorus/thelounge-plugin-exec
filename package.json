@@ -1,0 +1,31 @@
+{
+  "name": "thelounge-plugin-exec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venatiodecorus/thelounge-plugin-exec.git"
+  },
+  "keywords": [
+    "thelounge",
+    "irc",
+    "exec"
+  ],
+  "author": "venatiodecorus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/venatiodecorus/thelounge-plugin-exec/issues"
+  },
+  "homepage": "https://github.com/venatiodecorus/thelounge-plugin-exec#readme",
+  "dependencies": {
+    "thelounge": "^4.2.0"
+  },
+  "thelounge": {
+    "name": "Exec",
+    "type": "plugin"
+  }
+}
