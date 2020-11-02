@@ -1,15 +1,15 @@
 # thelounge-plugin-exec
 
-Recreates irssi's `/exec` command for [thelounge](https://thelounge.chat), which allows you to run arbitrary commands on your host and send the output to IRC. Useful for playing ASCII art, cowsay, etc. Thank you to MiniDigger's shortcuts [plugin](https://github.com/minidigger/thelounge-plugin-shortcuts) for the inspiration and guide.
+Recreates irssi's `/exec` command for [thelounge](https://thelounge.chat), which allows you to run arbitrary commands on your host and send the output to IRC. Useful for playing ASCII art, cowsay, etc. Thank you to MiniDigger's shortcuts [plugin](https://github.com/venatiodecorus/thelounge-plugin-exec) for the inspiration and guide.
 
 # Installation
 
 - If you have installed thelounge via NPM/Yarn:
 
-   `thelounge install thelounge-plugin-shortcuts`
+   `thelounge install thelounge-plugin-exec`
 - If you have installed thelounge via source:
 
-   `node index.js install thelounge-plugin-shortcuts`
+   `node index.js install thelounge-plugin-exec`
 
 # Usage
 
