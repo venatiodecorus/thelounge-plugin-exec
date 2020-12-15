@@ -42,25 +42,30 @@ const execCommand = {
 
                     // Get first burst amount of lines
                     let burstText = stdout.trim().split(/[\r?\n]+/, burst);
-                    for(var i = 0; i < burst && i < burstText.length; i++) {
-                        client.runAsUser(burstText[i], target.chan.id);
-                    }
-        
-                    let restText = stdout.trim().split(/[\r?\n]+/);
-                    restText = restText.splice(burst, restText.length-1);
-                    
-                    if(restText.length == 0)
-                        return;
-
-                    var it = 0;
-                    var intObj = setInterval(() => {
-                        client.runAsUser(restText[it++], target.chan.id);
-                        if(stop || it == restText.length) {
-                            stop = false;
-                            it = 0;
-                            clearInterval(intObj);
+                    if (burstText.length < burst) {
+                        let tempburst = burstText.length;
+                        for(var i = 0; i < tempburst; i++) {
+                            client.runAsUser(burstText[i], target.chan.id);
                         }
-                    }, perSec)
+                        tempburst = burst
+                    }
+                    else {
+                        for(var i = 0; i < burst; i++) {
+                            client.runAsUser(burstText[i], target.chan.id);
+                        }
+            
+                        let restText = stdout.trim().split(/[\r\n]+/);
+                        restText = restText.splice(burst, restText.length-1);
+                        var it = 0;
+                        var intObj = setInterval(() => {
+                            client.runAsUser(restText[it++], target.chan.id);
+                            if(stop || it == restText.length) {
+                                stop = false;
+                                it = 0;
+                                clearInterval(intObj);
+                            }
+                        }, perSec)
+                    }
                 });
             break;
         }
